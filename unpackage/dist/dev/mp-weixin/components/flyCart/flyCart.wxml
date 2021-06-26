@@ -1,0 +1,1 @@
+<view><block wx:if="{{cartHidden}}"><image class="flycart" style="{{'left:'+(bus_x+'px')+';'+('top:'+(bus_y+'px')+';')+('transform:'+('scale('+scale+')')+';')}}" src="{{imageUrl}}"></image></block></view>

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<image :src="imageUrl" :style="{left:bus_x+'px',top:bus_y+'px',transform:'scale('+scale+')'}" v-if="cartHidden">
+		<image :src="imageUrl" :style="{left:bus_x+'px',top:bus_y+'px',transform:'scale('+scale+')'}" v-if="cartHidden" class="flycart">
 		</image>
 	</view>
 </template>
@@ -18,7 +18,7 @@
 			/* 图片 url  */
 			imageUrl: {
 				type: String,
-				default: ''
+				default: 'https://pic.cnblogs.com/avatar/1628917/20201219134424.png'
 			}
 		},
 		data() {
@@ -33,7 +33,7 @@
 			};
 		},
 		methods: {
-			startCart(e) {
+			startCart() {
 				clearInterval(this.timer)
 				this.cartHidden = true
 				this.end = {
@@ -48,10 +48,10 @@
 				this.end.x = windowWidth * 1 / 5 - 50
 				/* 开启购物车 */
 				/* this.start 储存起始点 clientY clientY  ,this.end储存最终点 clientX clientY */
-				console.log(e);
 				this.start = {}
-				this.start.x= this.current.touches[0].clientX
-				this.start.y = this.current.touches[0].clientY
+				console.log(this.current,'this.current');
+				this.start.x= this.current.x
+				this.start.y = this.current.y
 				console.log(this.start,this.end);
 				
 				const travelList = flyCart([this.start.x, this.start.y], [this.end.x, this.end.y], 25, 50)
@@ -81,5 +81,10 @@
 </script>
 
 <style>
-
+.flycart{
+	   width:80rpx;
+	   height:80rpx;
+	   position:fixed;
+	   z-index:1010;
+	}
 </style>
